@@ -225,6 +225,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "ie.setu.movementcomponent": {
+      "version": "file:ie.setu.movementcomponent",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
