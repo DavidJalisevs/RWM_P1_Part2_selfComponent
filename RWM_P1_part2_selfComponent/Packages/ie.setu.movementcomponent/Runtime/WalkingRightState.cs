@@ -5,6 +5,8 @@ using UnityEngine;
 public class WalkingRightState : State
 {
     private MovingStateMachine _sm;
+    public GameManager gm;
+
     public WalkingRightState(MovingStateMachine stateMachine) : base("moving", stateMachine)
     {
         _sm = stateMachine;
@@ -14,17 +16,34 @@ public class WalkingRightState : State
     {
         base.Enter();
         handleRightInput();
-      
+        
+
         Vector3 temp = _sm.transform.localScale;
         if (temp.x < 0) { temp.x *= -1; }
         _sm.transform.localScale = temp;
+        gm = GameObject.FindObjectOfType<GameManager>();
+
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        moveRight();
-        _sm.movementController.setTimeSinceLastButtonPress(_sm.movementController.getTimeSinceLastButtonPress() + Time.deltaTime);
+		if (gm.sprintIsActive) // get boolean from antoher place
+		{
+			moveRight();
+		}
+		else
+		{
+			moveSlowRight();
+		}
+
+		if (gm.dashIsActivated) // get boolean from antoher place
+		{
+			dash();
+		}
+
+
+		_sm.movementController.setTimeSinceLastButtonPress(_sm.movementController.getTimeSinceLastButtonPress() + Time.deltaTime);
         if (Input.GetKeyUp(_sm.movementController.rightKey))
         {
             _sm.movementController.setVelocity(_sm.movementController.getRigidBody().velocity);
@@ -83,8 +102,46 @@ public class WalkingRightState : State
 		Debug.Log("Walking Right State");
 
 	}
+    public void moveSlowRight()
+    {
+        Vector2 temp = _sm.movementController.getVelocity();
+        if (_sm.movementController.getTimeSinceLastButtonPress() < _sm.movementController.getTimeLeft())
+        {
+            temp = _sm.movementController.getVelocity();
+            temp = _sm.movementController.getRigidBody().velocity;
+            temp.x = getVel(_sm.movementController.getTimeSinceLastButtonPress(), temp.y).x;
+            _sm.movementController.setRigidBodyVelocity(temp);
+            _sm.movementController.setVelocity(temp);
+            _sm.movementController.setRigidBodyVelocity(new Vector2(Mathf.Clamp(temp.x, -_sm.movementController._LOWEST_SLOWWALKING_SPEED, _sm.movementController._MAX_SLOWWALKING_SPEED), temp.y)); // Clamp speed.
+        }
+        else
+        {
+            temp = _sm.movementController.getRigidBody().velocity;
+            temp.x = _sm.movementController._MAX_SLOWWALKING_SPEED;
+            _sm.movementController.setRigidBodyVelocity(temp);
+            _sm.movementController.setVelocity(temp);
+        }
+        Debug.Log("Walking Right State");
 
-	Vector2 getVel(float time, float t_yVel)
+    }
+
+    public void dash()
+    {
+        //Vector2 temp = _sm.movementController.getVelocity();
+
+        //temp = _sm.movementController.getVelocity();
+        //temp = _sm.movementController.getRigidBody().velocity;
+        //temp.x = getVel(_sm.movementController.getTimeSinceLastButtonPress(), temp.y).x;
+        //_sm.movementController.setRigidBodyVelocity(temp);
+        //_sm.movementController.setVelocity(temp);
+        //_sm.movementController.setRigidBodyVelocity(new Vector2(Mathf.Clamp(temp.x, -30, 30), temp.y)); // Clamp speed.
+        _sm.transform.position = new Vector2(_sm.transform.position.x+2, _sm.transform.position.y);
+
+        Debug.Log("DASHHHHH");
+    }
+
+
+    Vector2 getVel(float time, float t_yVel)
     {
         return new Vector3(_sm.movementController.acclearation * time, t_yVel, 0.0f); // v = u + at.
     }

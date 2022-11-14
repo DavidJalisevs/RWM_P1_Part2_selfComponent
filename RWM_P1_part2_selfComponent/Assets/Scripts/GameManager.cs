@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public bool continuesJump = false;
     public int jumpStateIs = 0;
     public bool doubleJumpCount = true;
+    public bool sprintIsActive = false;
+    public bool dashIsActivated = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +47,53 @@ public class GameManager : MonoBehaviour
 
         }
 
+        targetTime -= Time.deltaTime;
         checkForJumpSwitch();
 
-        targetTime -= Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sprintIsActive = true;
+        }
+        else   
+        {
+            sprintIsActive = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            dashIsActivated = true;
+        }
+        else
+        {
+            dashIsActivated = false;
+        }
+
+
+       // Debug.Log("Sprint is active : "+ sprintIsActive);
+
+    }
+
+    public void checkForJumpSwitch()
+    {
+        if (targetTime <= 0.0f)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                //continuesJump ^= true ;
+                // continuesJump = !continuesJump;
+
+                Debug.Log("JUMP is " + continuesJump);
+                jumpStateIs = jumpStateIs + 1;
+                targetTime = 0.5f;
+
+            }
+
+        }
+
+        if (jumpStateIs > 5)
+        {
+            jumpStateIs = 0;
+        }
 
         switch (jumpStateIs)
         {
@@ -72,36 +119,5 @@ public class GameManager : MonoBehaviour
                 print("Incorrect intelligence level.");
                 break;
         }
-    }
-
-    public void checkForJumpSwitch()
-    {
-        if (targetTime <= 0.0f)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                //continuesJump ^= true ;
-                // continuesJump = !continuesJump;
-
-                Debug.Log("JUMP is " + continuesJump);
-                jumpStateIs = jumpStateIs + 1;
-                targetTime = 0.5f;
-
-            }
-
-        }
-
-        if (jumpStateIs > 5)
-        {
-            jumpStateIs = 0;
-        }
-
-
-        
-
- 
-
-        Debug.Log("NUMBER IS : " + jumpStateIs);
-
     }
 }

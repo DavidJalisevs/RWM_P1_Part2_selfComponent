@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class JumpingState : State
 {
-    private bool firstJumpDone = false;
+    public GameManager gm;
+
     private MovingStateMachine _sm;
     public JumpingState(MovingStateMachine stateMachine) : base("moving", stateMachine)
 
@@ -15,6 +16,8 @@ public class JumpingState : State
     public override void Enter()
     {
         base.Enter();
+        gm = GameObject.FindObjectOfType<GameManager>();
+
         if (_sm._isIdle)
         {
             _sm._MovingWhileJumpingSpeed = 0;
@@ -52,28 +55,28 @@ public class JumpingState : State
         ///// Check for different jump modes
         /////
         /////
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 1) // get boolean from antoher place
+        if (gm.jumpStateIs == 1) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey) && _sm.movementController.getIsJumping()) // if space is pressed over long period of time
             {
             }
         }
 
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 1) // get boolean from antoher place
+        if (gm.jumpStateIs == 1) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey) && _sm.movementController.getIsJumping()) // if space is pressed over long period of time
             {
                 continuousJump();
             }
         }
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 2) // get boolean from antoher place
+        if (gm.jumpStateIs == 2) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey) && _sm.movementController.getIsJumping()) // if space is pressed over long period of time
             {
                 backJump();
             }
         }
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 3) // get boolean from antoher place
+        if (gm.jumpStateIs == 3) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey) && _sm.movementController.getIsJumping()) // if space is pressed over long period of time
             {
@@ -81,9 +84,7 @@ public class JumpingState : State
             }
         }
 
-
-
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 4) // get boolean from antoher place
+        if (gm.jumpStateIs == 4) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey))
             {
@@ -92,7 +93,7 @@ public class JumpingState : State
 
         }
 
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().jumpStateIs == 5) // get boolean from antoher place
+        if (gm.jumpStateIs == 5) // get boolean from antoher place
         {
             if (Input.GetKey(_sm.movementController.jumpKey) && _sm.movementController.getIsJumping()) // if space is pressed over long period of time
             {

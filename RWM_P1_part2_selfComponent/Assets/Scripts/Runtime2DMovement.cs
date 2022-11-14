@@ -10,7 +10,7 @@ public class Runtime2DMovement : MonoBehaviour
     private bool _isGrounded;
     private bool _stopMovement = false;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private float jumpTimeCounter;
     private Vector2 _velocity = new Vector2(0.0f, 0.0f);
     private float _timeLeft;
@@ -27,8 +27,11 @@ public class Runtime2DMovement : MonoBehaviour
     public float TimeToReachMaxHeight = 5.5f;
     public float _movementTime = 0.100f;
     public float _MAX_WALKING_SPEED = 5.0f;
-    public float acclearation = 17.0f;
     public float _LOWEST_WALKING_SPEED = 0.3f;
+    public float _MAX_SLOWWALKING_SPEED = 3.0f;
+    public float _LOWEST_SLOWWALKING_SPEED = 1.6f;
+
+    public float acclearation = 17.0f;
     public float playerGravity = 1.0f;
     // VARIALBES THE USER CAN EDIT TO CREATE DIFFERENT JUMP ARCS/MOVEMENT
 

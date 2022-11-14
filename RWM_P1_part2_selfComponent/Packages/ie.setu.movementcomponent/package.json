@@ -1,6 +1,6 @@
 {
   "name": "ie.setu.movementcomponent",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "displayName": "movementcomponent",
   "description": "movement for character player.",
   "unity": "2021.3"
