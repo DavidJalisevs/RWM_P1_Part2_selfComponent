@@ -6,7 +6,7 @@ using TMPro;
 
 public class InputForDiffMove : MonoBehaviour
 {
-    public PlayerScript player;
+    public PlayerProp player;
     public TextMeshProUGUI jumpModeText;
     public Canvas bgCanvas;
     public float targetTime = 0.5f;
@@ -34,7 +34,7 @@ public class InputForDiffMove : MonoBehaviour
         }
         jumpModeText.text = "Normal Jump";
         jumpStateIs = 4;
-        instance.player = FindObjectOfType<PlayerScript>();
+        instance.player = FindObjectOfType<PlayerProp>();
     }
 
 
