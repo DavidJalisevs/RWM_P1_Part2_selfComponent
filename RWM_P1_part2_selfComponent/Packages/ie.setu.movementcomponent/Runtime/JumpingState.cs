@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpingState : State
 {
-    public GameManager gm;
+    public InputForDiffMove gm;
 
     private MovingStateMachine _sm;
     public JumpingState(MovingStateMachine stateMachine) : base("moving", stateMachine)
@@ -16,7 +16,7 @@ public class JumpingState : State
     public override void Enter()
     {
         base.Enter();
-        gm = GameObject.FindObjectOfType<GameManager>();
+        gm = GameObject.FindObjectOfType<InputForDiffMove>();
 
         if (_sm._isIdle)
         {

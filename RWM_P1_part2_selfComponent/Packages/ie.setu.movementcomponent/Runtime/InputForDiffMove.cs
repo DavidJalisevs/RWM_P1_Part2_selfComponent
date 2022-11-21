@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class InputForDiffMove : MonoBehaviour
 {
-
     public PlayerScript player;
     public TextMeshProUGUI jumpModeText;
     public Canvas bgCanvas;
     public float targetTime = 0.5f;
 
-    public static GameManager instance;
+    public static InputForDiffMove instance;
     private string deviceID;
     public bool continuesJump = false;
     public int jumpStateIs = 0;
@@ -54,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             sprintIsActive = true;
         }
-        else   
+        else
         {
             sprintIsActive = false;
         }
@@ -69,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-       // Debug.Log("Sprint is active : "+ sprintIsActive);
+        // Debug.Log("Sprint is active : "+ sprintIsActive);
 
     }
 

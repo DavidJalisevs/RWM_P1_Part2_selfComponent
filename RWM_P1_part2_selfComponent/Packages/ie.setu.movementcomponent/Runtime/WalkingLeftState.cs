@@ -5,7 +5,7 @@ using UnityEngine;
 public class WalkingLeftState : State
 {
     private MovingStateMachine _sm;
-    public GameManager gm;
+    public InputForDiffMove gm;
 
     public WalkingLeftState(MovingStateMachine stateMachine) : base("moving", stateMachine)
     {
@@ -21,7 +21,7 @@ public override void Enter()
         Vector3 temp = _sm.transform.localScale;
         if (temp.x > 0) { temp.x *= -1; }
         _sm.transform.localScale = temp;
-        gm = GameObject.FindObjectOfType<GameManager>();
+        gm = GameObject.FindObjectOfType<InputForDiffMove>();
 
     }
 
