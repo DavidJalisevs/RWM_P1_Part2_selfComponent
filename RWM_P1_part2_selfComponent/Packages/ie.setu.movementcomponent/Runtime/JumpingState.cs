@@ -39,13 +39,13 @@ public class JumpingState : State
         base.UpdateLogic();
         if (Input.GetKeyDown(_sm.movementController.leftKey))
         {
-            _sm.movementController.setRigidBodyVelocity(_sm.movementController.getVelocity());
-            _sm.movementController.setTimeSinceLastButtonPress(0.0f);
-            stateMachine.ChangeState(_sm.movementLeft);
-        }
+			//_sm.movementController.setRigidBodyVelocity(_sm.movementController.getVelocity());
+			_sm.movementController.setTimeSinceLastButtonPress(0.0f);
+			stateMachine.ChangeState(_sm.movementLeft);
+		}
         else if (Input.GetKeyDown(_sm.movementController.rightKey))
         {
-            _sm.movementController.setRigidBodyVelocity(_sm.movementController.getVelocity());
+           // _sm.movementController.setRigidBodyVelocity(_sm.movementController.getVelocity());
             _sm.movementController.setTimeSinceLastButtonPress(0.0f);
             stateMachine.ChangeState(_sm.movementRight);
         }
