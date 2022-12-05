@@ -52,13 +52,13 @@ public override void Enter()
             _sm.movementController.setWalkLeft(false);
             stateMachine.ChangeState(_sm.idleState);
         }
-        else if (Input.GetKeyDown(_sm.movementController.rightKey))
+        else if (Input.GetKeyDown(_sm.movementController.rightKey) )
         {
             _sm.movementController.setWalkLeft(false);
             _sm.movementController.setTimeSinceLastButtonPress(0.0f);
             stateMachine.ChangeState(_sm.movementRight);
         }
-        else if (Input.GetKeyDown(_sm.movementController.jumpKey) )
+        else if (Input.GetKeyDown(_sm.movementController.jumpKey) && _sm.movementController.getIsGrounded())
         {
             stateMachine.ChangeState(_sm.jumping);
         }

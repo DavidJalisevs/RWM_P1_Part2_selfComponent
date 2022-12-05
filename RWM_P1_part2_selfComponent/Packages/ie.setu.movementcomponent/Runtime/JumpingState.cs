@@ -150,7 +150,7 @@ public class JumpingState : State
 
     public void highJump()
     {
-        if (_sm.movementController.getJumpTimeCounter() > 0)
+        if (_sm.movementController.getJumpTimeCounter() > 0 )
         {
             Vector3 temp = _sm.movementController.getRigidBody().velocity;
             temp.y = Vector2.up.y * _sm.movementController.impluseJumpVel * _sm.movementController.changeJumpHeightOnJump3;

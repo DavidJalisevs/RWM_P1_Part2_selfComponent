@@ -28,9 +28,11 @@ public class WalkingRightState : State
     public override void UpdateLogic()
     {
         base.UpdateLogic();
+
 		if (gm.sprintIsActive) // get boolean from antoher place
 		{
 			moveRight();
+
 		}
 		else
 		{
@@ -44,6 +46,7 @@ public class WalkingRightState : State
 
 
 		_sm.movementController.setTimeSinceLastButtonPress(_sm.movementController.getTimeSinceLastButtonPress() + Time.deltaTime);
+
         if (Input.GetKeyUp(_sm.movementController.rightKey))
         {
             _sm.movementController.setVelocity(_sm.movementController.getRigidBody().velocity);
@@ -56,7 +59,7 @@ public class WalkingRightState : State
             _sm.movementController.setTimeSinceLastButtonPress(0.0f);
             stateMachine.ChangeState(_sm.movementLeft);
         }
-        else if (Input.GetKeyDown(_sm.movementController.jumpKey))
+        else if (Input.GetKeyDown(_sm.movementController.jumpKey) && _sm.movementController.getIsGrounded())
         {
             stateMachine.ChangeState(_sm.jumping);
         }
