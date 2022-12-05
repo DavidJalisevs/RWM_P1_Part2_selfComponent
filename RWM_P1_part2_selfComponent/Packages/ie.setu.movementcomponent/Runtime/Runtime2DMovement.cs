@@ -30,6 +30,7 @@ public class Runtime2DMovement : MonoBehaviour
     public float _LOWEST_WALKING_SPEED = 0.3f;
     public float _MAX_SLOWWALKING_SPEED = 3.0f;
     public float _LOWEST_SLOWWALKING_SPEED = 1.6f;
+    public float changeJumpHeightOnJump3 = 1.2f;
 
     public float acclearation = 17.0f;
     public float playerGravity = 1.0f;

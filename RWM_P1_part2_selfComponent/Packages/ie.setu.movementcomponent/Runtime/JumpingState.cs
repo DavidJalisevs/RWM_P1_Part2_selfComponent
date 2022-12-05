@@ -153,7 +153,7 @@ public class JumpingState : State
         if (_sm.movementController.getJumpTimeCounter() > 0)
         {
             Vector3 temp = _sm.movementController.getRigidBody().velocity;
-            temp.y = Vector2.up.y * _sm.movementController.impluseJumpVel * 2.3f;
+            temp.y = Vector2.up.y * _sm.movementController.impluseJumpVel * _sm.movementController.changeJumpHeightOnJump3;
 
             _sm.movementController.setRigidBodyVelocity(temp);
             _sm.movementController.setJumpTimeCounter(_sm.movementController.getJumpTimeCounter() - Time.deltaTime);

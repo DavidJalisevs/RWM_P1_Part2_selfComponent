@@ -6,9 +6,9 @@ using TMPro;
 
 public class InputForDiffMove : MonoBehaviour
 {
-    public PlayerProp player;
-    public TextMeshProUGUI jumpModeText;
-    public Canvas bgCanvas;
+    //public PlayerProp player;
+    //public TextMeshProUGUI jumpModeText;
+    //public Canvas bgCanvas;
     public float targetTime = 0.5f;
 
     public static InputForDiffMove instance;
@@ -24,8 +24,8 @@ public class InputForDiffMove : MonoBehaviour
     void Start()
     {
    
-        jumpModeText.text = "Normal Jump";
-        jumpStateIs = 4;
+       // jumpModeText.text = "Normal Jump";
+        jumpStateIs = 3;
     }
 
 
@@ -84,22 +84,22 @@ public class InputForDiffMove : MonoBehaviour
         switch (jumpStateIs)
         {
             case 0:
-                jumpModeText.text = "Normal Jump";
+               // jumpModeText.text = "Normal Jump";
                 break;
             case 1:
-                jumpModeText.text = "Front Jump";
+               // jumpModeText.text = "Front Jump";
                 break;
             case 2:
-                jumpModeText.text = "Back Jump";
+              //  jumpModeText.text = "Back Jump";
                 break;
             case 3:
-                jumpModeText.text = "high Jump";
+               // jumpModeText.text = "high Jump";
                 break;
             case 4:
-                jumpModeText.text = "double Jump";
+              //  jumpModeText.text = "double Jump";
                 break;
             case 5:
-                jumpModeText.text = "Low Gravity Jump";
+              //  jumpModeText.text = "Low Gravity Jump";
                 break;
             default:
                 print("Incorrect intelligence level.");
