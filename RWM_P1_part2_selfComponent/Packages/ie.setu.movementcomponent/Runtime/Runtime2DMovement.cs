@@ -6,8 +6,8 @@ public class Runtime2DMovement : MonoBehaviour
 {
     private bool _moveRight;
     private bool _moveLeft;
-    private bool _isJumping;
-    private bool _isGrounded;
+    public bool _isJumping;
+    public bool _isGrounded;
     private bool _stopMovement = false;
 
     public Rigidbody2D rb;
@@ -19,7 +19,8 @@ public class Runtime2DMovement : MonoBehaviour
 
 
     // VARIALBES THE USER CAN EDIT TO CREATE DIFFERENT JUMP ARCS/MOVEMENT
-    public string _walkableSurfaceTagName;
+    public LayerMask _walkableSurfaceLayer;
+    public GameObject raycastTemp;
     public KeyCode leftKey = KeyCode.A;
     public KeyCode rightKey = KeyCode.D;
     public KeyCode jumpKey = KeyCode.Space;
@@ -31,7 +32,7 @@ public class Runtime2DMovement : MonoBehaviour
     public float _MAX_SLOWWALKING_SPEED = 3.0f;
     public float _LOWEST_SLOWWALKING_SPEED = 1.6f;
     public float changeJumpHeightOnJump3 = 1.2f;
-
+    public float raycastDistance = 0.55f;
     public float acclearation = 17.0f;
     public float playerGravity = 1.0f;
     // VARIALBES THE USER CAN EDIT TO CREATE DIFFERENT JUMP ARCS/MOVEMENT
@@ -58,13 +59,33 @@ public class Runtime2DMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collider)
-    {
-        if (collider.gameObject.tag == _walkableSurfaceTagName && !_isGrounded)
+	private void Update()
+	{
+       Debug.DrawRay(raycastTemp.transform.position,Vector2.down * raycastDistance, Color.red);
+
+       RaycastHit2D hit =  Physics2D.Raycast(raycastTemp.transform.position, Vector2.down, raycastDistance, _walkableSurfaceLayer);
+
+        if (hit.collider != null)
         {
-             _isGrounded = true;
+            _isGrounded = true;
             _isJumping = false;
         }
+        else
+        {
+            //  _isGrounded = false;
+
+        }
+    }
+
+	private void OnCollisionEnter2D(Collision2D collider)
+    {
+        //if (collider.gameObject.tag == _walkableSurfaceTagName && !_isGrounded)
+        //{
+        //     _isGrounded = true;
+        //    _isJumping = false;
+        //}
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -77,10 +98,10 @@ public class Runtime2DMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D walkableSurface)
     {
-        if (walkableSurface.gameObject.tag == _walkableSurfaceTagName && _isGrounded)
-        {
-            _isGrounded = false;
-        }
+       // if (walkableSurface.gameObject.tag == _walkableSurfaceLayer && _isGrounded)
+      //  {
+       //     _isGrounded = false;
+       // }
     }
 
     public void setStopMovement(bool t_stopMovement)
