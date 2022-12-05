@@ -150,20 +150,16 @@ public class JumpingState : State
 
     public void highJump()
     {
-        if (_sm.movementController.getJumpTimeCounter() > 0 )
-        {
-            Vector3 temp = _sm.movementController.getRigidBody().velocity;
+      
+                Vector3 temp = _sm.movementController.getRigidBody().velocity;
             temp.y = Vector2.up.y * _sm.movementController.impluseJumpVel * _sm.movementController.changeJumpHeightOnJump3;
 
             _sm.movementController.setRigidBodyVelocity(temp);
-            _sm.movementController.setJumpTimeCounter(_sm.movementController.getJumpTimeCounter() - Time.deltaTime);
+           // _sm.movementController.setJumpTimeCounter(_sm.movementController.getJumpTimeCounter() - Time.deltaTime);
             _sm.movementController.setRigidBodyGravity(1);
 
-        }
-        else // Else he is falling.
-        {
-            _sm.movementController.setIsJumping(false);
-        }
+        
+    
     }
 
     public void doubleJump()
