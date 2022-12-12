@@ -20,7 +20,9 @@ public class Runtime2DMovement : MonoBehaviour
 
     // VARIALBES THE USER CAN EDIT TO CREATE DIFFERENT JUMP ARCS/MOVEMENT
     public LayerMask _walkableSurfaceLayer;
-    public GameObject raycastTemp;
+    public GameObject raycastRight;
+    public GameObject raycastLeft;
+
     public KeyCode leftKey = KeyCode.A;
     public KeyCode rightKey = KeyCode.D;
     public KeyCode jumpKey = KeyCode.Space;
@@ -61,11 +63,13 @@ public class Runtime2DMovement : MonoBehaviour
 
 	private void Update()
 	{
-       Debug.DrawRay(raycastTemp.transform.position,Vector2.down * raycastDistance, Color.red);
+       Debug.DrawRay(raycastRight.transform.position,Vector2.down * raycastDistance, Color.red);
 
-       RaycastHit2D hit =  Physics2D.Raycast(raycastTemp.transform.position, Vector2.down, raycastDistance, _walkableSurfaceLayer);
+       RaycastHit2D hitRight =  Physics2D.Raycast(raycastRight.transform.position, Vector2.down, raycastDistance, _walkableSurfaceLayer);
+       RaycastHit2D hitLeft = Physics2D.Raycast(raycastLeft.transform.position, Vector2.down, raycastDistance, _walkableSurfaceLayer);
 
-        if (hit.collider != null)
+
+        if (hitRight.collider != null || hitLeft.collider != null)
         {
             _isGrounded = true;
             _isJumping = false;
