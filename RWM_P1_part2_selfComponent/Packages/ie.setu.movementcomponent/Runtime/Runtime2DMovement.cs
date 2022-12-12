@@ -51,7 +51,7 @@ public class Runtime2DMovement : MonoBehaviour
             rb.angularDrag = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             rb.gravityScale = playerGravity;
-
+            // test
         }
 
         // CHECK IF THE GAME OBJECT HAS A BOX COLLDER ATTACHED, IF NOT THEN CREATE ONE.
