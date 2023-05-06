@@ -164,12 +164,13 @@ public class JumpingState : State
         {
             _sm.movementController.setIsJumping(false);
         }
-    }
+		Debug.Log("High Jump state");
 
-    public void doubleJump()
+	}
+
+	public void doubleJump()
     {
 
-            Debug.Log("WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             Vector3 temp = _sm.movementController.getRigidBody().velocity;
             temp.y = Vector2.up.y * _sm.movementController.impluseJumpVel * 0.8f;
 
@@ -177,13 +178,14 @@ public class JumpingState : State
             _sm.movementController.setIsJumping(true);
             _sm.movementController.setIsGrounded(false);
             _sm.movementController.setRigidBodyGravity(1);
+		Debug.Log("Double Jump state");
 
-    }
+	}
 
 
 
 
-    public void continuousJump()
+	public void continuousJump()
     {
         if (_sm.movementController.getJumpTimeCounter() > 0)
         {
@@ -199,11 +201,13 @@ public class JumpingState : State
         {
             _sm.movementController.setIsJumping(false);
         }
-    }
+		Debug.Log("Forward Jump state");
+
+	}
 
 
 
-    public void backJump()
+	public void backJump()
     {
         if (_sm.movementController.getJumpTimeCounter() > 0)
         {
@@ -218,9 +222,11 @@ public class JumpingState : State
         {
             _sm.movementController.setIsJumping(false);
         }
-    }
+		Debug.Log("Back Jump state");
 
-    public void lowGravityJump()
+	}
+
+	public void lowGravityJump()
     {
         if (_sm.movementController.getJumpTimeCounter() > 0)
         {
@@ -236,7 +242,9 @@ public class JumpingState : State
         {
             _sm.movementController.setIsJumping(false);
         }
-    }
+		Debug.Log("Low gravity Jump state");
+
+	}
 
 
 }

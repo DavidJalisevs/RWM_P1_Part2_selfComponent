@@ -68,9 +68,34 @@ public class InputForDiffMove : MonoBehaviour
                 //continuesJump ^= true ;
                 // continuesJump = !continuesJump;
 
-                Debug.Log("JUMP is " + continuesJump);
-                jumpStateIs = jumpStateIs + 1;
-                targetTime = 0.5f;
+              
+
+				jumpStateIs = jumpStateIs + 1;
+				if (jumpStateIs == 0)
+				{
+					Debug.Log("JUMP is Normal Jump");
+				}
+				if (jumpStateIs == 1)
+				{
+					Debug.Log("JUMP is Front Jump");
+				}
+				if (jumpStateIs == 2)
+				{
+					Debug.Log("JUMP is Back Jump");
+				}
+				if (jumpStateIs == 3)
+				{
+					Debug.Log("JUMP is high Jump");
+				}
+				if (jumpStateIs == 4)
+				{
+					Debug.Log("JUMP is double Jump");
+				}
+				if (jumpStateIs == 5)
+				{
+					Debug.Log("JUMP is Low Gravity Jump");
+				}
+				targetTime = 0.5f;
 
             }
 
